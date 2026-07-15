@@ -9,17 +9,11 @@ public class ConnexionJpa {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_essai");
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        // Find simple
-        Livre livre = em.find(Livre.class, 1);
-        System.out.println(livre);
+        Client client = em.find(Client.class, 1);
+        System.out.println(client);
 
-        // TypedQuery pour extraire tous les livres
-        TypedQuery<Livre> query = em.createQuery("SELECT l FROM Livre l", Livre.class);
-        List<Livre> livres = query.getResultList();
-
-        // Boucle d'affichage
-        for (Livre l : livres) {
-            System.out.println(l);
+        for (Emprunt emprunt : client.getEmprunts()) {
+            System.out.println(emprunt);
         }
 
         em.close();

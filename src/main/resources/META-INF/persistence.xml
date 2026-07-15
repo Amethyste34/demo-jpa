@@ -7,6 +7,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>fr.diginamic.Region</class>
         <class>fr.diginamic.Livre</class>
+        <class>fr.diginamic.Client</class>
+        <class>fr.diginamic.Emprunt</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/demo_jpa?useSSL=false&amp;serverTimezone=UTC" />
