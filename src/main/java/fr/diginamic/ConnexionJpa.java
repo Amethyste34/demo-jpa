@@ -10,7 +10,12 @@ public class ConnexionJpa {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_essai");
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        System.out.println("Connexion établie avec succès !");
+        // Find de la région d'identifiant 1
+        Region region = em.find(Region.class, 1);
+
+        // Affichage du nom
+        System.out.println("Nom de la région : " + region.getNom());
+
 
         em.close();
         entityManagerFactory.close();
