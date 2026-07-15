@@ -1,9 +1,7 @@
 package fr.diginamic;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.List;
 
 public class ConnexionJpa {
 
@@ -11,22 +9,18 @@ public class ConnexionJpa {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_essai");
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        // Find de la région d'identifiant 1
-        Region region = em.find(Region.class, 1);
+        // Find simple
+        Livre livre = em.find(Livre.class, 1);
+        System.out.println(livre);
 
-        // Affichage du nom
-        System.out.println("Nom de la région : " + region.getNom());
+        // TypedQuery pour extraire tous les livres
+        TypedQuery<Livre> query = em.createQuery("SELECT l FROM Livre l", Livre.class);
+        List<Livre> livres = query.getResultList();
 
-        // Je veux insérer une nouvelle région
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-
-        Region rhoneAlpes = new Region();
-        rhoneAlpes.setNom("Rhône-Alpes");
-
-        em.persist(rhoneAlpes);
-
-        transaction.commit();
+        // Boucle d'affichage
+        for (Livre l : livres) {
+            System.out.println(l);
+        }
 
         em.close();
         entityManagerFactory.close();
