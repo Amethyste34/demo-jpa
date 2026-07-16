@@ -1,7 +1,6 @@
 package fr.diginamic;
 
 import javax.persistence.*;
-import java.util.List;
 
 public class ConnexionJpa {
 
