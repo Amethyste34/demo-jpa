@@ -8,11 +8,11 @@ public class ConnexionJpa {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("pu_essai");
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        Client client = em.find(Client.class, 1);
-        System.out.println(client);
+        Emprunt emprunt = em.find(Emprunt.class, 1);
+        System.out.println(emprunt);
 
-        for (Emprunt emprunt : client.getEmprunts()) {
-            System.out.println(emprunt);
+        for(Livre livre : emprunt.getLivres()){
+            System.out.println(livre);
         }
 
         em.close();
